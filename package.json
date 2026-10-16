@@ -7,6 +7,7 @@
   "license": "MIT",
   "scripts": {
     "serve": "python3 -m http.server 8000",
-    "test": "npm --prefix projects/bundle-analyzer test && npm --prefix projects/lighthouse-enforcer test"
+    "test": "npm run test:evidence && npm --prefix projects/bundle-analyzer test && npm --prefix projects/lighthouse-enforcer test",
+    "test:evidence": "node scripts/check-evidence.cjs"
   }
 }
