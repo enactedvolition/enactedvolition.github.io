@@ -157,7 +157,10 @@ html.has-consent-banner .sticky-cta{display:none}
 }
 .metric{background:var(--surface-0);padding:18px 20px}
 .metric .v{font-family:var(--mono);font-size:24px;font-weight:500;letter-spacing:-.02em}
-.metric .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--fg-2);margin-top:6px}
+.metric .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-2);margin-top:6px}
+.metric-context{color:var(--fg-2);font-size:12px;margin-top:10px;line-height:1.5}
+.metric-source{color:var(--accent);font-family:var(--mono);font-size:11px;text-decoration:none;display:inline-block;margin-top:8px}
+.metric-source:hover{text-decoration:underline}
 
 /* ── section scaffolding ──────────────────────────────────────────────── */
 section{padding:clamp(52px,7vw,88px) 0;border-top:1px solid var(--border)}
@@ -326,6 +329,28 @@ footer nav a:hover{color:var(--accent)}
   <div class="wrap hero">
     <div class="eyebrow">Evelyn Campbell · Independent research engineer</div>
     <h1>Making hidden dynamics <em>inspectable.</em></h1>
+    <div class="metrics" aria-label="Quantitative evidence snapshot">
+      <article class="metric" data-evidence-id="identity">
+        <div class="v">0.0000</div>
+        <div class="k">Max absolute logit identity error</div>
+        <p class="metric-context">Batch-size-1 identity checks · agent-reported</p>
+        <a class="metric-source" href="https://enactedvolition.github.io/portability.html">Source and limitations ↗</a>
+      </article>
+      <article class="metric" data-evidence-id="transplant">
+        <div class="v">−0.290</div>
+        <div class="k">Same − unrelated transfer efficiency</div>
+        <p class="metric-context">N = 32 · 95% CI [−0.363, −0.224] · unreplicated</p>
+        <a class="metric-source" href="https://enactedvolition.github.io/portability.html">Source and limitations ↗</a>
+      </article>
+      <article class="metric" data-evidence-id="projection">
+        <div class="v">0.37–0.64</div>
+        <div class="k">Mean neighbourhood preservation</div>
+        <p class="metric-context">N = 4 scenes · no task comparator</p>
+        <a class="metric-source" href="https://enactedvolition.github.io/mottled/viewer/?file=samples/self-portrait.mtj">Source and limitations ↗</a>
+      </article>
+    </div>
+    <p class="form-note" style="margin-top:12px">Reported measurements, not three independently replicated discoveries. Missing sample counts, intervals or baselines appear in <a href="#evidence">the evidence ledger</a> and <a href="data/evidence.json">machine-readable records</a>.</p>
+
     <p class="lede">
       I build open research instruments for investigating transformer state trajectories,
       causal interventions, and the limitations of visualizing high-dimensional systems.
@@ -583,12 +608,12 @@ footer nav a:hover{color:var(--accent)}
       </p>
     <div class="table-scroll ledger" style="margin-top:36px">
       <table>
-        <thead><tr><th>Claim</th><th>Confidence</th><th>Scope and weakest point</th><th>Check</th></tr></thead>
+        <thead><tr><th>Claim</th><th>Evidence status</th><th>Measurement, comparator and uncertainty</th><th>Source</th></tr></thead>
         <tbody>
           <tr>
             <td class="what"><strong>Pasting a hidden state from an unrelated fact moves the answer more than one from a related fact.</strong> The preregistered prediction was the opposite.</td>
             <td class="conf">single study</td>
-            <td class="what">Qwen2.5-0.5B-Instruct only, 32 directional transplants, paired sign-flip p = 3.05×10⁻⁵. Designed and run by an AI agent (Manus). Not independently replicated. I checked only that Mottled’s capture path reproduces the model’s own outputs (identity error 0.0000).</td>
+            <td class="what">Qwen2.5-0.5B-Instruct, N = 32 directional transplants. Same − unrelated mid-band transfer efficiency = −0.290; pair-clustered 95% bootstrap interval [−0.363, −0.224], paired sign-flip p = 3.05×10⁻⁵. Designed and run by Manus AI; not independently replicated. An identity check reported a maximum logit error of 0.0000 to four decimals; this validates consistency, not generalization.</td>
             <td class="name"><a href="portability.html">Portability study</a></td>
           </tr>
           <tr>
@@ -604,13 +629,13 @@ footer nav a:hover{color:var(--accent)}
             <td class="name"><a href="https://doi.org/10.5281/ZENODO.19625787">DOI 10.5281/zenodo.19625787</a></td>
           </tr>
           <tr>
-            <td class="what"><strong>Mottled's attention + MLP split reconstructs the residual stream exactly</strong> (max error 0.0000).</td>
+            <td class="what"><strong>Mottled's attention + MLP split reconstructs the residual stream to reported precision</strong> (max error shown as 0.0000).</td>
             <td class="conf">verified computation</td>
             <td class="what">A sanity check on the capture code. It is not a finding about models.</td>
             <td class="name"><a href="https://github.com/enactedvolition/mottled">Mottled tests</a></td>
           </tr>
           <tr>
-            <td class="what"><strong>A 2D view of a layer-by-layer trajectory keeps enough to compare two prompts.</strong></td>
+            <td class="what"><strong>Projection fidelity differs across saved scenes; predictive usefulness remains untested.</strong></td>
             <td class="conf">exploratory</td>
             <td class="what">Mean neighbourhood preservation across four sample scenes, from Mottled’s own fidelity_summary: 0.37 (self-portrait, GPT-2; 71% of states under the 0.5 flag) to 0.64 (gpt2-capitals). In three of the four, more than half the states are under the flag. Not yet shown: a task where Mottled beats a linear probe.</td>
             <td class="name"><a href="https://enactedvolition.github.io/mottled/viewer/?file=samples/self-portrait.mtj">Sample scene</a></td>
