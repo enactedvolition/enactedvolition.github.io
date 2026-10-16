@@ -1,6 +1,6 @@
 # enactedvolition.github.io
 
-Personal research site — **[enactedvolition.github.io](https://enactedvolition.github.io)**
+Personal research site for Evelyn Campbell, independent research engineer — **[enactedvolition.github.io](https://enactedvolition.github.io)**
 
 Static single-file site, no build step. Styled in **Incision**, the design
 language defined in [`mottled/design_tokens.py`](https://github.com/enactedvolition/mottled/blob/main/design_tokens.py):
@@ -9,6 +9,8 @@ monospace for every data value. Colours here mirror those tokens — change them
 there first.
 
 ---
+
+The homepage leads with **Mottled** as the flagship instrument, followed by the research threads and a separate evidence ledger. The ledger preserves the source links and explicitly separates computational checks, single-study findings, and exploratory interpretations. Private professional inquiries use the email contact already published on the portfolio; public technical issues continue through GitHub.
 
 ## Research direction
 
@@ -111,7 +113,7 @@ The only thing the site writes to a browser is that answer, under the
 
 ### Contact
 
-The contact form on the home page has no backend. It validates client-side and
+The homepage also links to the previously published email address for private collaboration and contract inquiries. The contact form on the home page has no backend. It validates client-side and
 composes a prefilled GitHub issue, which the sender submits themselves; with
 JavaScript off the plain form GET lands on the same prefilled form. To use an
 email address instead, point the form's `action` at a `mailto:` and drop the
