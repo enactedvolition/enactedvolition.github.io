@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "scope": "Three quantitative homepage indicators, not a census of all research claims.",
+  "updated_on": "2026-10-16",
+  "policy": "Null means unmeasured or unreported, never zero. Figures are from linked sources; do not treat them as independently reproduced unless stated.",
+  "claims": [
+    {
+      "id": "identity",
+      "estimate": "0.0000",
+      "label": "Max absolute logit identity error",
+      "unit": "logits, reported to 4 decimal places",
+      "n": null,
+      "n_unit": "independent validation runs",
+      "comparator": "repeated clean baseline; self-overwrite; final-state logit-lens checks",
+      "uncertainty": null,
+      "missing": [
+        "Independent run count not specified",
+        "No interval reported; implementation check, not a population estimate"
+      ],
+      "status": "agent-reported code check",
+      "source": "https://enactedvolition.github.io/portability.html",
+      "provenance": "Manus-run Mottled portability study; Mottled commit f244c6e; batch size 1",
+      "limitation": "Checks instrument consistency, not generality of causal transplant results."
+    },
+    {
+      "id": "transplant",
+      "estimate": "−0.290",
+      "label": "Same − unrelated transfer efficiency",
+      "unit": "middle-layer normalized transfer effect",
+      "n": 32,
+      "n_unit": "directional transplant units",
+      "comparator": "same-relation vs unrelated-relation donors (states 9–16)",
+      "uncertainty": "Pair-clustered 95% bootstrap interval [−0.363, −0.224]; paired sign-flip p = 3.05×10⁻⁵",
+      "missing": [
+        "No independent replication"
+      ],
+      "status": "single external-agent study",
+      "source": "https://enactedvolition.github.io/portability.html",
+      "provenance": "Manus-designed and -run preregistered Qwen2.5-0.5B-Instruct study",
+      "limitation": "One model and one factual-cloze intervention; experiment not independently replicated."
+    },
+    {
+      "id": "projection",
+      "estimate": "0.37–0.64",
+      "label": "Mean neighbourhood preservation",
+      "unit": "fraction across four saved sample scenes",
+      "n": 4,
+      "n_unit": "sample scenes",
+      "comparator": null,
+      "uncertainty": null,
+      "missing": [
+        "No task-level linear probe comparator",
+        "No interval reported across independent runs"
+      ],
+      "status": "exploratory visualization diagnostic",
+      "source": "https://enactedvolition.github.io/mottled/viewer/?file=samples/self-portrait.mtj",
+      "provenance": "Mottled fidelity_summary on four sample scenes, as reported in homepage ledger",
+      "limitation": "In 3/4 scenes, more than half the states fall below the 0.5 fidelity flag. Not evidence of predictive usefulness."
+    }
+  ]
+}
