@@ -21,46 +21,22 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/assets/site.webmanifest">
-<meta name="theme-color" content="#080B18">
+<meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1230" media="(prefers-color-scheme: dark)">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/fiber.css">
 
 <style>
-/* ── Incision design language — mirrors mottled/design_tokens.py ────────── */
-:root{
-  --base:#080B18; --surface-0:#0C1020; --surface-1:#11162A;
-  --border:#1E2540; --border-strong:#283050;
-  --fg-1:#EDF0FA; --fg-2:#818FB8;
-  --accent:#4B7CF3; --accent-subtle:rgba(75,124,243,.08);
-  --teal:#00CCA8; --amber:#D4934A; --red:#E05050;
-  /* chart marks — snapped into the dark lightness band and validated */
-  --mark-1:#4B7CF3; --mark-2:#C28238;
-  --radius-xs:2px; --radius-sm:3px;
-  --ease:cubic-bezier(.16,1,.3,1);
-  --sans:"DM Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
-  --gutter:clamp(20px,5vw,64px);
-}
+/* ── Fiber design system — tokens and fonts come from /assets/fiber.css ─── */
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{background:var(--base);color:var(--fg-1);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
 a{color:inherit}
 .mono{font-family:var(--mono)}
-body::before{
-  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    linear-gradient(to right,rgba(75,124,243,.045) 1px,transparent 1px) 0 0/72px 72px,
-    linear-gradient(to bottom,rgba(75,124,243,.045) 1px,transparent 1px) 0 0/72px 72px,
-    radial-gradient(ellipse 80% 55% at 50% -10%,rgba(75,124,243,.10),transparent 70%);
-  mask-image:linear-gradient(to bottom,#000 0,#000 55vh,transparent 95vh);
-  -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 55vh,transparent 95vh);
-}
 .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 var(--gutter)}
 .narrow{max-width:800px}
 
-header.top{position:sticky;top:0;z-index:10;background:rgba(8,11,24,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+header.top{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:58px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.01em;text-decoration:none;white-space:nowrap;flex:none}
 .brand .glyph{width:9px;height:9px;background:var(--accent);border-radius:var(--radius-xs);box-shadow:0 0 0 4px var(--accent-subtle);flex:none}
@@ -120,7 +96,7 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 .legend{display:flex;flex-wrap:wrap;gap:18px;margin-bottom:16px;font-family:var(--mono);font-size:11.5px;color:var(--fg-2)}
 .legend span{display:inline-flex;align-items:center;gap:7px}
 .legend i{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
-.legend i.band{border-radius:var(--radius-xs);background:rgba(212,147,74,.16);border:1px solid rgba(212,147,74,.4)}
+.legend i.band{border-radius:var(--radius-xs);background:color-mix(in srgb,var(--hyp) 16%,transparent);border:1px solid color-mix(in srgb,var(--hyp) 40%,transparent)}
 .tip{position:absolute;pointer-events:none;opacity:0;transform:translate(-50%,-118%);background:var(--surface-1);border:1px solid var(--border-strong);border-radius:var(--radius-xs);padding:8px 11px;font-family:var(--mono);font-size:11.5px;line-height:1.6;color:var(--fg-1);white-space:nowrap;z-index:5;transition:opacity .12s var(--ease);box-shadow:0 6px 20px rgba(0,0,0,.5)}
 .tip.on{opacity:1}
 .tip b.s1{color:var(--mark-1)} .tip b.s2{color:var(--mark-2)}
@@ -136,9 +112,9 @@ td.k{font-family:var(--mono);font-size:12.5px;color:var(--fg-1);white-space:nowr
 td.num{font-family:var(--mono);font-size:12.5px;color:var(--fg-1);text-align:right;white-space:nowrap}
 td.num.neg{color:var(--amber)}
 .tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--border-strong);border-radius:var(--radius-xs);padding:2px 7px;white-space:nowrap;color:var(--fg-2)}
-.tag.yes{color:var(--teal);border-color:rgba(0,204,168,.35)}
-.tag.no{color:var(--amber);border-color:rgba(212,147,74,.35)}
-.tag.spec{color:var(--red);border-color:rgba(224,80,80,.35)}
+.tag.yes{color:var(--teal);border-color:color-mix(in srgb,var(--ell) 35%,transparent)}
+.tag.no{color:var(--amber);border-color:color-mix(in srgb,var(--hyp) 35%,transparent)}
+.tag.spec{color:var(--red);border-color:color-mix(in srgb,var(--inv) 35%,transparent)}
 .conf{display:inline-block;min-width:44px;font-family:var(--mono);font-size:12.5px;color:var(--fg-1)}
 .bar{display:inline-block;height:5px;border-radius:1px;background:var(--accent);vertical-align:middle;margin-left:8px}
 
@@ -533,7 +509,7 @@ footer nav a:hover{color:var(--accent)}
   "use strict";
   var D = JSON.parse(document.getElementById('pdata').textContent);
   var NS = 'http://www.w3.org/2000/svg';
-  var M1 = '#4B7CF3', M2 = '#C28238', SURF = '#0C1020';
+  var M1 = 'var(--accent)', M2 = 'var(--hyp)', SURF = 'var(--panel)';
 
   function el(n, a){ var e = document.createElementNS(NS, n);
     for (var k in a) e.setAttribute(k, a[k]); return e; }
@@ -554,7 +530,7 @@ footer nav a:hover{color:var(--accent)}
     // preregistered band (states 9–16), drawn under everything
     if (o.band){
       svg.appendChild(el('rect', {x:X(o.band[0]), y:T, width:X(o.band[1]) - X(o.band[0]),
-        height:ph, fill:'rgba(212,147,74,.10)'}));
+        height:ph, fill:'color-mix(in srgb,var(--hyp) 10%,transparent)'}));
     }
     var g = el('g', {'class':'grid'});
     for (var i = 0; i <= 4; i++) g.appendChild(el('line', {x1:L, x2:W - R, y1:T + ph*i/4, y2:T + ph*i/4}));
@@ -591,7 +567,7 @@ footer nav a:hover{color:var(--accent)}
     });
 
     // crosshair + shared tooltip
-    var cross = el('line', {x1:0, x2:0, y1:T, y2:T + ph, stroke:'#283050',
+    var cross = el('line', {x1:0, x2:0, y1:T, y2:T + ph, stroke:'var(--faint)',
       'stroke-width':1, opacity:0});
     svg.appendChild(cross);
     var dots = o.series.map(function(s){

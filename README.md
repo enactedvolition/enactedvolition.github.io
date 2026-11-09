@@ -2,11 +2,13 @@
 
 Personal research site for Evelyn Campbell, independent research engineer — **[enactedvolition.github.io](https://enactedvolition.github.io)**
 
-Static single-file site, no build step. Styled in **Incision**, the design
-language defined in [`mottled/design_tokens.py`](https://github.com/enactedvolition/mottled/blob/main/design_tokens.py):
-dark navy void, one precision-blue accent, 1px borders, near-sharp corners,
-monospace for every data value. Colours here mirror those tokens — change them
-there first.
+Static site, no build step. Styled in **Fiber**, an explorable-math design system:
+cobalt on an ice-paper ground (cobalt night in dark), IBM Plex self-hosted from
+`assets/fonts/` with no third-party requests, and a banknote-style moiré behind
+the sourced evidence cards. Tokens and `@font-face` rules live in
+[`assets/fiber.css`](assets/fiber.css); pages follow the viewer's light/dark setting.
+[Mottled](https://github.com/enactedvolition/mottled) keeps its own **Incision**
+language and is not restyled here.
 
 ---
 
@@ -129,7 +131,7 @@ by hand, so a palette change is one edit and a re-run:
 
 ```bash
 pip install Pillow
-python3 assets/fetch_fonts.py    # DM Sans + JetBrains Mono -> assets/.fonts (gitignored)
+python3 assets/fetch_fonts.py    # legacy: DM Sans + JetBrains Mono (no longer used by the pages)
 python3 assets/generate.py       # rewrites the PNGs and the .ico
 ```
 
