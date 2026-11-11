@@ -11,7 +11,8 @@
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="manifest" href="/assets/site.webmanifest">
-<meta name="theme-color" content="#080B18">
+<meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0b1230" media="(prefers-color-scheme: dark)">
 
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Enacted Volition Research">
@@ -24,10 +25,8 @@
 <meta property="og:image:alt" content="Enacted Volition Research — instruments for systems that will not hold still.">
 <meta name="twitter:card" content="summary_large_image">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/incision.css">
+<link rel="stylesheet" href="/assets/fiber.css">
+<link rel="stylesheet" href="/assets/site.css">
 <style>
   .consent-state{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:14px}
   .consent-state .v{font-family:var(--mono);font-size:13px;color:var(--fg-1)}
@@ -66,7 +65,7 @@
       against the source rather than taken on trust —
       <a href="https://github.com/enactedvolition/enactedvolition.github.io">every line of it is public</a>.
     </p>
-    <p class="meta" style="margin-top:26px">Last updated 13 September 2026</p>
+    <p class="meta" style="margin-top:26px">Last updated 9 November 2026</p>
 
     <h2>1. What I collect directly</h2>
     <p>
@@ -85,17 +84,13 @@
       <a href="https://docs.github.com/site-policy/privacy-policies/github-privacy-statement" rel="noopener">GitHub Privacy Statement</a>.
     </p>
 
-    <h2>3. Fonts — Google Fonts</h2>
+    <h2>3. Fonts — self-hosted</h2>
     <p>
-      Pages load two typefaces (DM Sans and JetBrains Mono) from
-      <span class="mono">fonts.googleapis.com</span> and
-      <span class="mono">fonts.gstatic.com</span>. Making that request
-      discloses your IP address and user agent to Google, as any third-party
-      request would. Google states that the Fonts API sets no cookies and
-      does not use the requests to build an advertising profile, but the
-      request is real and worth naming rather than glossing over. If you
-      block it, the site falls back to your system's sans and monospace faces
-      and remains fully usable.
+      Pages use IBM Plex (Sans, Sans Condensed, Mono and Serif Italic), served
+      from this site's own <span class="mono">/assets/fonts/</span> folder
+      under the SIL Open Font License. No font request goes to Google or any
+      other third party, so loading a page discloses nothing extra beyond the
+      GitHub Pages request described above.
     </p>
 
     <h2>4. Analytics — off unless you say yes</h2>

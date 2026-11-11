@@ -6,10 +6,11 @@
     <title>WHISPER_KEY // Steganography Tool</title>
     <meta name="description" content="Browser-based image steganography. Embed and extract encrypted messages in images using LSB encoding and AES-256-GCM encryption.">
     <!-- Accessibility -->
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b1230" media="(prefers-color-scheme: dark)">
     <link rel="canonical" href="https://enactedvolition.github.io/stego.html">
 
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/fiber.css">
 
     <style>
         * {
@@ -19,9 +20,9 @@
         }
 
         body {
-            font-family: 'JetBrains Mono', monospace;
-            background: #0a0a0a;
-            color: #e5e5e5;
+            font-family: var(--font-mono);
+            background: var(--bg);
+            color: var(--fg);
             min-height: 100vh;
             padding: 2rem;
         }
@@ -32,15 +33,15 @@
         }
 
         header {
-            border: 2px solid #22c55e;
+            border: 2px solid var(--accent);
             padding: 2rem;
             margin-bottom: 2rem;
-            background: #000;
+            background: var(--bg);
             position: relative;
         }
 
         h1 {
-            color: #22c55e;
+            color: var(--accent);
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
@@ -48,7 +49,7 @@
         }
 
         .subtitle {
-            color: #888;
+            color: var(--muted);
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
@@ -57,11 +58,11 @@
         .nav {
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid #333;
+            border-top: 1px solid var(--line);
         }
 
         .nav a {
-            color: #22c55e;
+            color: var(--accent);
             text-decoration: none;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -70,7 +71,7 @@
         }
 
         .nav a:hover {
-            color: #fff;
+            color: var(--fg);
         }
 
         .grid {
@@ -81,19 +82,19 @@
         }
 
         .panel {
-            border: 2px solid #333;
-            background: #0f0f0f;
+            border: 2px solid var(--line);
+            background: var(--panel);
             padding: 2rem;
         }
 
         .panel h2 {
-            color: #22c55e;
+            color: var(--accent);
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid var(--line);
         }
 
         .form-group {
@@ -102,7 +103,7 @@
 
         label {
             display: block;
-            color: #888;
+            color: var(--muted);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
@@ -113,11 +114,11 @@
         input[type="password"],
         textarea {
             width: 100%;
-            background: #000;
-            border: 1px solid #333;
-            color: #22c55e;
+            background: var(--bg);
+            border: 1px solid var(--line);
+            color: var(--accent);
             padding: 0.75rem;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
             font-size: 0.9rem;
             transition: border-color 0.3s;
         }
@@ -126,7 +127,7 @@
         input[type="password"]:focus,
         textarea:focus {
             outline: none;
-            border-color: #22c55e;
+            border-color: var(--accent);
         }
 
         textarea {
@@ -140,29 +141,29 @@
 
         .file-input-label {
             display: inline-block;
-            background: #000;
-            border: 2px solid #22c55e;
-            color: #22c55e;
+            background: var(--bg);
+            border: 2px solid var(--accent);
+            color: var(--accent);
             padding: 0.75rem 1.5rem;
             cursor: pointer;
             text-transform: uppercase;
             font-size: 0.85rem;
             letter-spacing: 0.1rem;
             transition: all 0.3s;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
         }
 
         .file-input-label:hover {
-            background: #22c55e;
-            color: #000;
+            background: var(--accent);
+            color: var(--on-accent);
         }
 
         button {
-            background: #22c55e;
-            color: #000;
+            background: var(--accent);
+            color: var(--on-accent);
             border: none;
             padding: 0.75rem 2rem;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
@@ -172,23 +173,23 @@
         }
 
         button:hover {
-            background: #16a34a;
+            background: color-mix(in oklab,var(--accent),var(--fg) 14%);
         }
 
         button:disabled {
-            background: #333;
-            color: #666;
+            background: var(--line);
+            color: var(--muted);
             cursor: not-allowed;
         }
 
         .preview {
-            border: 1px solid #333;
+            border: 1px solid var(--line);
             min-height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-top: 1rem;
-            background: #000;
+            background: var(--bg);
         }
 
         .preview img {
@@ -197,14 +198,14 @@
         }
 
         .preview-empty {
-            color: #333;
+            color: var(--muted);
             text-transform: uppercase;
             font-size: 0.85rem;
         }
 
         .info {
-            background: #1a1a1a;
-            border-left: 3px solid #22c55e;
+            background: var(--grid);
+            border-left: 3px solid var(--accent);
             padding: 1rem;
             margin-bottom: 1.5rem;
             font-size: 0.85rem;
@@ -212,35 +213,35 @@
         }
 
         .info code {
-            background: #000;
-            color: #22c55e;
+            background: var(--bg);
+            color: var(--accent);
             padding: 0.2rem 0.4rem;
-            border: 1px solid #333;
+            border: 1px solid var(--line);
         }
 
         .status {
             padding: 1rem;
             margin-top: 1rem;
-            border: 1px solid #333;
-            background: #000;
+            border: 1px solid var(--line);
+            background: var(--bg);
             font-size: 0.85rem;
             display: none;
         }
 
         .status.success {
             display: block;
-            border-color: #22c55e;
-            color: #22c55e;
+            border-color: var(--ell);
+            color: var(--ell);
         }
 
         .status.error {
             display: block;
-            border-color: #ef4444;
-            color: #ef4444;
+            border-color: var(--inv);
+            color: var(--inv);
         }
 
         .filename {
-            color: #666;
+            color: var(--muted);
             font-size: 0.8rem;
             margin-top: 0.5rem;
         }
@@ -261,28 +262,28 @@
         }
 
         /* busy + field-error states */
-        .status.busy{display:block;border-color:#3b82f6;color:#3b82f6}
+        .status.busy{display:block;border-color:var(--accent);color:var(--accent)}
         .spinner{
             display:inline-block;width:11px;height:11px;margin-right:0.6rem;
-            vertical-align:-1px;border:2px solid rgba(59,130,246,.25);
-            border-top-color:#3b82f6;border-radius:50%;animation:spin .7s linear infinite
+            vertical-align:-1px;border:2px solid color-mix(in srgb,var(--accent) 25%,transparent);
+            border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite
         }
         @keyframes spin{to{transform:rotate(360deg)}}
         @media(prefers-reduced-motion:reduce){.spinner{animation-duration:2.4s}}
         .form-group.invalid textarea,
         .form-group.invalid input[type="password"],
-        .form-group.invalid .file-input-label{border-color:#ef4444}
-        .field-error{display:none;color:#ef4444;font-size:0.75rem;margin-top:0.35rem}
+        .form-group.invalid .file-input-label{border-color:var(--inv)}
+        .field-error{display:none;color:var(--inv);font-size:0.75rem;margin-top:0.35rem}
         .form-group.invalid .field-error{display:block}
 
         /* shared site footer — every page reaches the policy pages */
         .site-foot{
             display:flex;flex-wrap:wrap;gap:1.25rem;justify-content:center;
             margin:2.5rem auto 0;padding:1.25rem 1rem 2rem;
-            border-top:1px solid #333;font-size:0.75rem
+            border-top:1px solid var(--line);font-size:0.75rem
         }
-        .site-foot a{color:#666;text-decoration:none;transition:color .18s}
-        .site-foot a:hover{color:#3b82f6}
+        .site-foot a{color:var(--muted);text-decoration:none;transition:color .18s}
+        .site-foot a:hover{color:var(--accent)}
     </style>
 <link rel="icon" href="/assets/favicon.ico" sizes="32x32">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">

@@ -39,21 +39,21 @@
 
   var STYLE = [
     '.bg420-consent{position:fixed;left:0;right:0;bottom:0;z-index:9999;',
-    'background:rgba(12,16,32,.97);border-top:1px solid #283050;',
+    'background:var(--panel);border-top:1px solid var(--faint);',
     'backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);',
-    'color:#EDF0FA;font:14px/1.55 "DM Sans",-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}',
+    'color:var(--fg);font:14px/1.55 var(--font-body)}',
     '.bg420-consent>div{max-width:1180px;margin:0 auto;padding:16px clamp(20px,5vw,64px);',
     'display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}',
-    '.bg420-consent p{margin:0;flex:1 1 380px;color:#818FB8;font-size:13.5px}',
-    '.bg420-consent a{color:#4B7CF3}',
+    '.bg420-consent p{margin:0;flex:1 1 380px;color:var(--muted);font-size:13.5px}',
+    '.bg420-consent a{color:var(--accent)}',
     '.bg420-consent .btns{display:flex;gap:10px;flex:0 0 auto}',
-    '.bg420-consent button{font:500 12.5px/1 "JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;',
+    '.bg420-consent button{font:500 12.5px/1 var(--font-mono);',
     'letter-spacing:.02em;padding:10px 16px;border-radius:2px;cursor:pointer;',
-    'border:1px solid #283050;background:transparent;color:#818FB8;transition:color .18s,border-color .18s}',
-    '.bg420-consent button:hover{color:#EDF0FA;border-color:#4B7CF3}',
-    '.bg420-consent button.primary{background:#4B7CF3;border-color:#4B7CF3;color:#080B18}',
-    '.bg420-consent button.primary:hover{background:#6A92F6;color:#080B18}',
-    '.bg420-consent :focus-visible{outline:2px solid #4B7CF3;outline-offset:3px}',
+    'border:1px solid var(--faint);background:transparent;color:var(--muted);transition:color .18s,border-color .18s}',
+    '.bg420-consent button:hover{color:var(--fg);border-color:var(--accent)}',
+    '.bg420-consent button.primary{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}',
+    '.bg420-consent button.primary:hover{background:color-mix(in oklab,var(--accent),var(--fg) 14%);color:var(--on-accent)}',
+    '.bg420-consent :focus-visible{outline:2px solid var(--accent);outline-offset:3px}',
     '@media(max-width:560px){.bg420-consent .btns{width:100%}.bg420-consent button{flex:1}}'
   ].join('');
 

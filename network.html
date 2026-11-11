@@ -6,10 +6,11 @@
     <title>NET_INTERCEPT // Network Analysis</title>
     <meta name="description" content="Browser-based network traffic analyzer. Inspect HTTP headers, performance metrics, and connection details.">
     <!-- Accessibility -->
-    <meta name="theme-color" content="#0a0a0a">
+    <meta name="theme-color" content="#f3f6fc" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b1230" media="(prefers-color-scheme: dark)">
     <link rel="canonical" href="https://enactedvolition.github.io/network.html">
 
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/fiber.css">
 
     <style>
         * {
@@ -19,9 +20,9 @@
         }
 
         body {
-            font-family: 'JetBrains Mono', monospace;
-            background: #0a0a0a;
-            color: #e5e5e5;
+            font-family: var(--font-mono);
+            background: var(--bg);
+            color: var(--fg);
             min-height: 100vh;
             padding: 2rem;
         }
@@ -32,14 +33,14 @@
         }
 
         header {
-            border: 2px solid #3b82f6;
+            border: 2px solid var(--accent);
             padding: 2rem;
             margin-bottom: 2rem;
-            background: #000;
+            background: var(--bg);
         }
 
         h1 {
-            color: #3b82f6;
+            color: var(--accent);
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
@@ -47,7 +48,7 @@
         }
 
         .subtitle {
-            color: #888;
+            color: var(--muted);
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
@@ -56,11 +57,11 @@
         .nav {
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid #333;
+            border-top: 1px solid var(--line);
         }
 
         .nav a {
-            color: #3b82f6;
+            color: var(--accent);
             text-decoration: none;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -69,7 +70,7 @@
         }
 
         .nav a:hover {
-            color: #fff;
+            color: var(--fg);
         }
 
         .stats-grid {
@@ -80,18 +81,18 @@
         }
 
         .stat-card {
-            background: #0f0f0f;
-            border: 2px solid #333;
+            background: var(--panel);
+            border: 2px solid var(--line);
             padding: 1.5rem;
             transition: border-color 0.3s;
         }
 
         .stat-card:hover {
-            border-color: #3b82f6;
+            border-color: var(--accent);
         }
 
         .stat-label {
-            color: #666;
+            color: var(--muted);
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
@@ -99,26 +100,26 @@
         }
 
         .stat-value {
-            color: #3b82f6;
+            color: var(--accent);
             font-size: 2rem;
             font-weight: 700;
         }
 
         .panel {
-            border: 2px solid #333;
-            background: #0f0f0f;
+            border: 2px solid var(--line);
+            background: var(--panel);
             padding: 2rem;
             margin-bottom: 2rem;
         }
 
         .panel h2 {
-            color: #3b82f6;
+            color: var(--accent);
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
             padding-bottom: 0.5rem;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid var(--line);
         }
 
         .form-group {
@@ -127,7 +128,7 @@
 
         label {
             display: block;
-            color: #888;
+            color: var(--muted);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
@@ -137,11 +138,11 @@
         input[type="text"],
         input[type="url"] {
             width: 100%;
-            background: #000;
-            border: 1px solid #333;
-            color: #3b82f6;
+            background: var(--bg);
+            border: 1px solid var(--line);
+            color: var(--accent);
             padding: 0.75rem;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
             font-size: 0.9rem;
             transition: border-color 0.3s;
         }
@@ -149,15 +150,15 @@
         input[type="text"]:focus,
         input[type="url"]:focus {
             outline: none;
-            border-color: #3b82f6;
+            border-color: var(--accent);
         }
 
         button {
-            background: #3b82f6;
-            color: #fff;
+            background: var(--accent);
+            color: var(--on-accent);
             border: none;
             padding: 0.75rem 2rem;
-            font-family: 'JetBrains Mono', monospace;
+            font-family: var(--font-mono);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.1rem;
@@ -167,18 +168,18 @@
         }
 
         button:hover {
-            background: #2563eb;
+            background: color-mix(in oklab,var(--accent),var(--fg) 14%);
         }
 
         button:disabled {
-            background: #333;
-            color: #666;
+            background: var(--line);
+            color: var(--muted);
             cursor: not-allowed;
         }
 
         .info {
-            background: #1a1a1a;
-            border-left: 3px solid #3b82f6;
+            background: var(--grid);
+            border-left: 3px solid var(--accent);
             padding: 1rem;
             margin-bottom: 1.5rem;
             font-size: 0.85rem;
@@ -186,15 +187,15 @@
         }
 
         .info code {
-            background: #000;
-            color: #3b82f6;
+            background: var(--bg);
+            color: var(--accent);
             padding: 0.2rem 0.4rem;
-            border: 1px solid #333;
+            border: 1px solid var(--line);
         }
 
         pre {
-            background: #000;
-            border: 1px solid #333;
+            background: var(--bg);
+            border: 1px solid var(--line);
             padding: 1rem;
             overflow-x: auto;
             font-size: 0.85rem;
@@ -205,57 +206,57 @@
         .status {
             padding: 1rem;
             margin-top: 1rem;
-            border: 1px solid #333;
-            background: #000;
+            border: 1px solid var(--line);
+            background: var(--bg);
             font-size: 0.85rem;
             display: none;
         }
 
         .status.success {
             display: block;
-            border-color: #22c55e;
-            color: #22c55e;
+            border-color: var(--accent);
+            color: var(--accent);
         }
 
         .status.error {
             display: block;
-            border-color: #ef4444;
-            color: #ef4444;
+            border-color: var(--inv);
+            color: var(--inv);
         }
 
         .log-entry {
             padding: 0.75rem;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid var(--line);
             font-size: 0.85rem;
         }
 
         .log-entry:hover {
-            background: #1a1a1a;
+            background: var(--grid);
         }
 
         .log-time {
-            color: #666;
+            color: var(--muted);
             margin-right: 1rem;
         }
 
         .log-method {
-            color: #3b82f6;
+            color: var(--accent);
             margin-right: 1rem;
             font-weight: 700;
         }
 
         .log-url {
-            color: #888;
+            color: var(--muted);
         }
 
         .log-status {
-            color: #22c55e;
+            color: var(--accent);
             margin-left: 1rem;
         }
 
         .connections-list {
-            background: #000;
-            border: 1px solid #333;
+            background: var(--bg);
+            border: 1px solid var(--line);
             padding: 1rem;
             max-height: 400px;
             overflow-y: auto;
@@ -276,9 +277,9 @@
         .table th {
             text-align: left;
             padding: 0.75rem;
-            background: #000;
-            color: #3b82f6;
-            border-bottom: 2px solid #333;
+            background: var(--bg);
+            color: var(--accent);
+            border-bottom: 2px solid var(--line);
             text-transform: uppercase;
             font-size: 0.75rem;
             letter-spacing: 0.1rem;
@@ -286,12 +287,12 @@
 
         .table td {
             padding: 0.75rem;
-            border-bottom: 1px solid #222;
-            color: #888;
+            border-bottom: 1px solid var(--line);
+            color: var(--muted);
         }
 
         .table tr:hover {
-            background: #1a1a1a;
+            background: var(--grid);
         }
 
         /* 1fr tracks default to min-width:auto, so the widest table inside a
@@ -315,16 +316,16 @@
         }
 
         /* busy + field-error states */
-        .status.busy{display:block;border-color:#3b82f6;color:#3b82f6}
+        .status.busy{display:block;border-color:var(--accent);color:var(--accent)}
         .spinner{
             display:inline-block;width:11px;height:11px;margin-right:0.6rem;
-            vertical-align:-1px;border:2px solid rgba(59,130,246,.25);
-            border-top-color:#3b82f6;border-radius:50%;animation:spin .7s linear infinite
+            vertical-align:-1px;border:2px solid color-mix(in srgb,var(--accent) 25%,transparent);
+            border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite
         }
         @keyframes spin{to{transform:rotate(360deg)}}
         @media(prefers-reduced-motion:reduce){.spinner{animation-duration:2.4s}}
-        input[aria-invalid="true"]{border-color:#ef4444}
-        .field-error{display:none;color:#ef4444;font-size:0.75rem;margin-top:0.35rem}
+        input[aria-invalid="true"]{border-color:var(--inv)}
+        .field-error{display:none;color:var(--inv);font-size:0.75rem;margin-top:0.35rem}
         .field-error.show{display:block}
         button[disabled]{opacity:.55;cursor:not-allowed}
 
@@ -332,10 +333,10 @@
         .site-foot{
             display:flex;flex-wrap:wrap;gap:1.25rem;justify-content:center;
             margin:2.5rem auto 0;padding:1.25rem 1rem 2rem;
-            border-top:1px solid #333;font-size:0.75rem
+            border-top:1px solid var(--line);font-size:0.75rem
         }
-        .site-foot a{color:#666;text-decoration:none;transition:color .18s}
-        .site-foot a:hover{color:#3b82f6}
+        .site-foot a{color:var(--muted);text-decoration:none;transition:color .18s}
+        .site-foot a:hover{color:var(--accent)}
     </style>
 <link rel="icon" href="/assets/favicon.ico" sizes="32x32">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -403,7 +404,7 @@
                     value="https://api.github.com/users/github"
                     aria-describedby="url-help"
                     required>
-                <small id="url-help" style="color: #666; font-size: 0.75rem; display: block; margin-top: 0.25rem;">
+                <small id="url-help" style="color: var(--muted); font-size: 0.75rem; display: block; margin-top: 0.25rem;">
                     Enter a URL that allows CORS (e.g., public APIs)
                 </small>
                 <div class="field-error" id="url-error" role="alert"></div>
@@ -420,7 +421,7 @@
             <div class="panel">
                 <h2>[ MONITOR ] Request Log</h2>
                 <div class="connections-list" id="requestLog">
-                    <div style="color: #666; text-align: center; padding: 2rem;">
+                    <div style="color: var(--muted); text-align: center; padding: 2rem;">
                         No requests logged yet. Analyze a URL to begin monitoring.
                     </div>
                 </div>
@@ -429,7 +430,7 @@
             <div class="panel">
                 <h2>[ METRICS ] Performance Resources</h2>
                 <div class="connections-list" id="performanceResources">
-                    <div style="color: #666; text-align: center; padding: 2rem;">
+                    <div style="color: var(--muted); text-align: center; padding: 2rem;">
                         Loading performance metrics...
                     </div>
                 </div>
@@ -469,7 +470,7 @@
             entry.className = 'log-entry';
 
             const time = new Date().toLocaleTimeString();
-            const statusColor = status >= 200 && status < 300 ? '#22c55e' : '#ef4444';
+            const statusColor = status >= 200 && status < 300 ? 'var(--ell)' : 'var(--inv)';
 
             entry.innerHTML = `
                 <span class="log-time">${time}</span>
@@ -560,7 +561,7 @@
                 status.textContent = `SUCCESS: Received ${response.status} ${response.statusText} in ${responseTime}ms`;
 
                 // Headers
-                let headersHtml = '<h3 style="color: #3b82f6; margin-top: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; font-size: 1rem;">Response Headers</h3>';
+                let headersHtml = '<h3 style="color: var(--accent); margin-top: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; font-size: 1rem;">Response Headers</h3>';
                 headersHtml += '<table class="table"><thead><tr><th>Header</th><th>Value</th></tr></thead><tbody>';
 
                 response.headers.forEach((value, key) => {
@@ -569,7 +570,7 @@
                 headersHtml += '</tbody></table>';
 
                 // Connection info
-                let infoHtml = '<h3 style="color: #3b82f6; margin-top: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; font-size: 1rem;">Connection Details</h3>';
+                let infoHtml = '<h3 style="color: var(--accent); margin-top: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; font-size: 1rem;">Connection Details</h3>';
                 infoHtml += '<table class="table"><tbody>';
                 infoHtml += `<tr><td>URL</td><td>${response.url}</td></tr>`;
                 infoHtml += `<tr><td>Status</td><td>${response.status} ${response.statusText}</td></tr>`;
@@ -580,7 +581,7 @@
                 infoHtml += '</tbody></table>';
 
                 // Response preview (first 500 chars)
-                let previewHtml = '<h3 style="color: #3b82f6; margin-top: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; font-size: 1rem;">Response Preview</h3>';
+                let previewHtml = '<h3 style="color: var(--accent); margin-top: 1.5rem; margin-bottom: 1rem; text-transform: uppercase; font-size: 1rem;">Response Preview</h3>';
                 previewHtml += `<pre>${data.substring(0, 500)}${data.length > 500 ? '...' : ''}</pre>`;
 
                 results.innerHTML = infoHtml + headersHtml + previewHtml;
